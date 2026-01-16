@@ -10,11 +10,12 @@ const daysEl = document.querySelector('[data-days]');
 const hoursEl = document.querySelector('[data-hours]');
 const minutesEl = document.querySelector('[data-minutes]');
 const secoundEl = document.querySelector('[data-seconds]');
+const dateTimePicker = document.querySelector('#datetime-picker');
 
 let userSelectedDates = null;
 let timerId = null;
 
-startBtn.disabled = null;
+startBtn.disabled = true;
 
 const options = {
   enableTime: true,
@@ -43,6 +44,7 @@ flatpickr('#datetime-picker', options);
 
 startBtn.addEventListener('click', () => {
   startBtn.disabled = true;
+  dateTimePicker.disabled = true;
 
   timerId = setInterval(() => {
     const now = new Date();
@@ -50,7 +52,8 @@ startBtn.addEventListener('click', () => {
 
     if (time <= 0) {
       clearInterval(timerId);
-      updateTimer(0);
+      startBtn.disabled = false;
+      dateTimePicker.disabled = false;
       return;
     }
     updateTimer(time);
