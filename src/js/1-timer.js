@@ -52,7 +52,6 @@ startBtn.addEventListener('click', () => {
 
     if (time <= 0) {
       clearInterval(timerId);
-      startBtn.disabled = false;
       dateTimePicker.disabled = false;
       return;
     }
